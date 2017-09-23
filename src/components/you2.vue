@@ -2,17 +2,35 @@
         <el-card class='box-card'>
         <div class="you2">
                 <div>
-                    <el-button @click="show = !show">点击获取豆瓣热门电影</el-button>
+                    <el-button type="primary" icon="search" @click="show = !show">(淡入淡出))</el-button>
                         <div>
                                 <transition name="el-fade-in-liner">
                                         <div v-show="!show" class='transition-box'>
-                                                <ul>
-                                                         <li v-for='article in articles'>
-                                                                {{article.title}}
-                                                         </li>
-                                                </ul>
+                                                <div id = "ref">
+                                                        <ul>
+                                                                <li v-for='article in articles'>
+                                                                         {{article.title}}
+                                                                </li>
+                                                         </ul>
+                                                </div>
                                         </div>
                                 </transition>
+                        </div>
+                </div>
+                <div>
+                        <el-button type="success" @click="show2 = !show2">(展开折叠)</el-button>
+                        <div>
+                                <el-collapse-transition>
+                                        <div v-show ="!show2">
+                                               <div id = "ref">
+                                                        <ul>
+                                                                <li v-for='article in articles'>
+                                                                         {{article.title}}
+                                                                </li>
+                                                         </ul>
+                                                </div>
+                                        </div>
+                                </el-collapse-transition>
                         </div>
                 </div>
         </div>
@@ -24,11 +42,12 @@ export default{
         name:'you2',
         data:function(){
                 return {articles:[],
-                show:true
+                show:true,
+                show2:true
                 }
         },
         mounted:function(){
-                this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=20', {}, {
+                this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=5', {}, {
         headers: {
 
         },
@@ -39,5 +58,5 @@ export default{
            console.log(response) 
     });
         }
-        }
-        </script>
+}
+</script>
