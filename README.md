@@ -1,2 +1,2 @@
 # myvue
-vue learing
+vue leaning
