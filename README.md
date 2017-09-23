@@ -5,7 +5,7 @@ vue leaning
 
 > A Vue.js project
 
-## Build Setup
+## Build Setupp
 
 ``` bash
 # install dependencies
