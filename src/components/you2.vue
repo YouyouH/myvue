@@ -7,27 +7,27 @@
                                 <transition name="el-fade-in-liner">
                                         <div v-show="!show" class='transition-box'>
                                                 <div id = "ref">
-                                                        <ul>
+                                                        <ol>
                                                                 <li v-for='article in articles'>
                                                                          {{article.title}}
                                                                 </li>
-                                                         </ul>
+                                                         </ol>
                                                 </div>
                                         </div>
                                 </transition>
                         </div>
                 </div>
                 <div>
-                        <el-button type="success" @click="show2 = !show2">(展开折叠)</el-button>
+                        <el-button type="success" @click="reverseMsg">{{(msg2)}}</el-button>
                         <div>
                                 <el-collapse-transition>
                                         <div v-show ="!show2">
                                                <div id = "ref">
-                                                        <ul>
+                                                        <ol>
                                                                 <li v-for='article in articles'>
                                                                          {{article.title}}
                                                                 </li>
-                                                         </ul>
+                                                         </ol>
                                                 </div>
                                         </div>
                                 </el-collapse-transition>
@@ -43,8 +43,9 @@ export default{
         data:function(){
                 return {articles:[],
                 show:true,
-                show2:true
-                }
+                show2:true,
+                msg2:"折叠展开",
+                }   
         },
         mounted:function(){
                 this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=5', {}, {
@@ -57,6 +58,12 @@ export default{
     },function(response){
            console.log(response) 
     });
-        }
+},
+         methods:{
+                reverseMsg:function(){
+                        this.msg2 = this.msg2.split('').reverse().join(),
+                        this.show2 = !this.show2
+                }      
+        },
 }
 </script>
