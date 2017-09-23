@@ -16,7 +16,7 @@ export default{
         name:'you1',
         data:function(){
                 return{
-                        msg:'you1'
+                        msg:'豆瓣评分'
                 }
         },
         commponents:{
